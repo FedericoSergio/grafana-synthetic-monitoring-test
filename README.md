@@ -25,8 +25,15 @@ To run the tests in parallel:
 To check any single test in headed mode:
 
 ```bash
-  python -m pytest .\tests\test_filter_by_location.py --slowmo 1000
-  python -m pytest .\tests\test_check_details.py --slowmo 1000
-  python -m pytest .\tests\test_no_data.py --slowmo 1000
+  python -m pytest .\tests\test_filter_by_location.py --headed --slowmo 1000
+  python -m pytest .\tests\test_check_details.py --headed --slowmo 1000
+  python -m pytest .\tests\test_no_data.py --headed --slowmo 1000
 ```
+
+
+## Support
+
+For support, email federico.sergio17@gmail.com.
+
+
     
