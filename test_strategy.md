@@ -5,7 +5,7 @@ On each test presented, I first start with a deep manual check on the applicatio
 
 Then, I write a brief example on how I can perform the test in the Given-When-Then format, to help me visualize the steps to reproduce manually and later in automation
 
-1. Filtering Checks by Location:
+### Filtering Checks by Location:
 - Steps to apply a location filter.
 - Expected outcome: Only checks from the selected location are displayed.
 
@@ -23,7 +23,7 @@ The manual steps become
     - Navigate to its detail page clicking on the link
     - Check in the detail page if there is any information relative to at least one of the selected probes
 
-2. Viewing Check Details:
+### Viewing Check Details:
 - Steps to access detailed information of a specific check.
 - Expected outcome: Correct details are displayed corresponding to the selected check.
 
@@ -45,7 +45,7 @@ Manual steps:
 - Open the check details clicking on the link
 - Check that the metrics displays a value within the defined threshold
 
-3. Handling No Data Scenario:
+### Handling No Data Scenario:
 - Steps to apply a filter that results in no matching checks.
 - Expected outcome: Appropriate message indicating no data is displayed.
 
