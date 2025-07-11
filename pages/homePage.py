@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, Locator, expect
 from pages.checkDetailPage import CheckDetailPage
+import random
 
 class Result:
 
@@ -36,6 +37,7 @@ class HomePage:
     def load(self) -> None:
         """Load the Grafana home page."""
         self.page.goto(self.URL)
+        expect(self.page.get_by_test_id("data-testid table body").get_by_role("row").nth(0)).to_be_visible()
     
     def filter_region(self, region_code: str) -> None:
         """Set a specific value in region dropdown."""
@@ -63,13 +65,13 @@ class HomePage:
             assert detailPage.verify_probes(probes) == True
             self.page.go_back()
 
-    def verify_results_data_consistency(self, results: list[Result]) -> None:
-        """Verify that the results parametes in home page match the detail page."""
-        self.results_locator = self.page.get_by_test_id("data-testid table body").get_by_role("row")
-        self.results = [Result(result) for result in self.results_locator.all()]
-        for result in results:
-            detailPage = CheckDetailPage(self.page)
-            expect(result.reachability).to_have_text(detailPage.reachability.inner_text()) 
+    # def verify_results_data_consistency(self, results: list[Result]) -> None:
+    #     """Verify that the results parametes in home page match the detail page."""
+    #     self.results_locator = self.page.get_by_test_id("data-testid table body").get_by_role("row")
+    #     self.results = [Result(result) for result in self.results_locator.all()]
+    #     for result in results:
+    #         detailPage = CheckDetailPage(self.page)
+    #         expect(result.reachability).to_have_text(detailPage.reachability.inner_text()) 
 
     def verify_no_results(self) -> None:
         """Verify that the page displays 'No data' when no results are available."""
@@ -78,8 +80,13 @@ class HomePage:
             expect(no_data).to_be_visible()
         print("\nNo data is displayed as expected.")
 
-    def get_results(self) -> list[Result]:
-        """Return the list of results."""
+    def click_on_random_check(self) -> Result:
+        """Click on the first check in the results."""
         self.results_locator = self.page.get_by_test_id("data-testid table body").get_by_role("row")
         self.results = [Result(result) for result in self.results_locator.all()]
-        return self.results
+        if self.results:
+            selected_result = random.choice(self.results)
+            selected_result.inspect_check()
+            return selected_result
+        else:
+            raise Exception("No results available to click on.")
