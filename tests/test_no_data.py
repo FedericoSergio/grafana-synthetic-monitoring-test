@@ -1,7 +1,5 @@
 from playwright.sync_api import Page
 from pages.homePage import HomePage
-from region import Region
-from probes import Probes
 
 def test_no_data_scenario(page):
     # Given the Grafana home page is displayed

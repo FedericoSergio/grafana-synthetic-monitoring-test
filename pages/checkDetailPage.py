@@ -15,6 +15,7 @@ class CheckDetailPage:
 
     def verify_probes(self, probes: list[str]) -> bool:
         """Verify that the detail page matches at least one of filtered probes."""
+        self.page.wait_for_load_state()
         for probe in probes:
             if self.page.get_by_text(probe).nth(0).is_visible():
                 return True
