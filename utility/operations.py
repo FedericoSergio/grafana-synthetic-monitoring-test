@@ -2,7 +2,7 @@ class Operations:
     
     @staticmethod
     def parse_metric_string(s: str) -> float:
-        """Parse a numeric string, removing spaces and handling percentage."""
+        """Parse a numeric string representing a metric, by removing spaces and unit of measures."""
         s = s.strip().replace(' ', '')
         if s.endswith('%'):
             s = s[:-1]

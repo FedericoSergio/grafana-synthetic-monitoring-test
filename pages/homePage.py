@@ -48,7 +48,9 @@ class HomePage:
     def filter_probes(self, probe_names: list[str]) -> None:
         """Set a specific value in probes dropdown."""
         self.probe_filter_dropdown.click()
-        for probe in probe_names:        
+        for probe in probe_names:   
+            while not self.page.get_by_text(probe).is_visible():
+               self.page.keyboard.press("ArrowDown")
             self.page.get_by_text(probe).click()
         self.page.keyboard.press("Escape")
         self.refresh_button.click()
@@ -64,15 +66,7 @@ class HomePage:
             detailPage.verify_page(result.job)
             assert detailPage.verify_probes(probes) == True
             self.page.go_back()
-
-    # def verify_results_data_consistency(self, results: list[Result]) -> None:
-    #     """Verify that the results parametes in home page match the detail page."""
-    #     self.results_locator = self.page.get_by_test_id("data-testid table body").get_by_role("row")
-    #     self.results = [Result(result) for result in self.results_locator.all()]
-    #     for result in results:
-    #         detailPage = CheckDetailPage(self.page)
-    #         expect(result.reachability).to_have_text(detailPage.reachability.inner_text()) 
-
+            
     def verify_no_results(self) -> None:
         """Verify that the page displays 'No data' when no results are available."""
         no_data_text = self.page.get_by_text("No data")
