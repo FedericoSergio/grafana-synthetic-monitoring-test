@@ -5,6 +5,8 @@ On each test presented, I first start with a deep manual check on the applicatio
 
 Then, I write a brief example on how I can perform the test in the Given-When-Then format, to help me visualize the steps to reproduce manually and later in automation
 
+---
+
 ### Filtering Checks by Location:
 - Steps to apply a location filter.
 - Expected outcome: Only checks from the selected location are displayed.
@@ -65,4 +67,9 @@ Manual steps:
 - Check that the "No data" text is displayed in the home page
 
 
+
+
+## Support
+
+For support, email federico.sergio17@gmail.com.
 
